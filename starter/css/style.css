@@ -1,0 +1,226 @@
+@charset "UTF-8";
+body {
+/* body全体（ページ全体）に適用するデザインだよ！ */
+    font-family: Arial, sans-serif;
+    /* 使うフォント（文字の形）を指定 */
+    display: flex;
+    /* Flexboxを使って中身（画面）を配置するよ */
+    justify-content: center;
+    /* 横方向（左右）の中央に配置 */
+    align-items: center;
+    /* 縦方向（上下）の中央に配置 */
+    min-height: 100vh;
+    /* 画面の高さ全体（View Height）を使うように指定 */
+    margin: 0;
+    /* 外側の余白をゼロに */
+    background-color: #f0f8ff;
+    /* ページの背景色を爽やかな水色に指定 */
+}
+
+/* ★画面切り替えの核心！初期状態では「非表示」にするよ */
+.screen {
+/* class="screen" の要素全てに適用されるデザインだよ！ */
+    display: none;
+    /* ここが重要！デフォルトでは「非表示」にするよ！ */
+    padding: 30px;
+    /* 内側の余白を30px */
+    border-radius: 10px;
+    /* 角を丸くする */
+    background-color: white;
+    /* 背景色を白に */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* 影をつけて立体感を出す */
+    width: 90%;
+    /* 幅を親要素の90%にする */
+    max-width: 500px;
+    /* 最大幅を500pxに制限（PCで大きくなりすぎないように） */
+    text-align: center;
+    /* テキストを中央揃えに */
+    position: fixed;   /* 画面に対して固定 */
+    top: 50%;          /* 上から50%の位置 */
+    left: 50%;         /* 左から50%の位置 */
+    transform: translate(-50%, -50%); /* 自身の幅の半分だけ戻す（これで完璧に真ん中！） */
+}
+
+/* 「active」クラスがついた画面だけを表示するよ！ */
+.screen.active {
+/* class="screen" と class="active" の両方を持っている要素に適用されるデザイン！ */
+    display: block;
+    /* 表示（ブロック要素として配置）に戻す！これで画面が切り替わるよ！ */
+}
+
+h1, h2 {
+/* h1とh2の見出しに適用 */
+    color: #3f51b5;
+    /* 文字色を青系の見やすい色に指定 */
+}
+
+#time-display {
+/* IDが time-display の要素（タイマーの数字）に適用 */
+    font-size: 4rem;
+    /* 文字サイズを大きく！ */
+    font-weight: bold;
+    /* 文字を太く */
+    margin: 20px 0;
+    /* 上下に20pxの余白 */
+}
+
+button {
+/* すべてのボタン要素に適用 */
+    padding: 10px 20px;
+    /* 内側の余白 */
+    font-size: 1rem;
+    /* 文字サイズ */
+    margin: 8px;
+    /* 外側の余白 */
+    border: none;
+    /* 枠線をなくす */
+    border-radius: 5px;
+    /* 角を丸く */
+    cursor: pointer;
+    /* マウスカーソルを指の形にする */
+    background-color: #7789eb;
+    /* 背景色を緑に */
+    color: white;
+    /* 文字色を白に */
+}
+
+/* メニューに戻るボタンは目立たないようにする */
+.back-btn {
+/* class="back-btn" のボタンに適用 */
+    background-color: #e0e0e0;
+    /* 背景色を薄いグレーに */
+    color: #333;
+    /* 文字色を濃いグレーに */
+    margin-top: 20px;
+    /* 上に余白をあける */
+}
+
+/* ============================================== */
+/* ★グラフのデザイン（Flexboxで棒グラフ風に！） */
+/* ============================================== */
+#study-graph {
+/* IDが study-graph の要素（グラフ全体の箱）に適用 */
+    display: flex;
+    /* Flexboxを使って、中の棒を横に並べる！ */
+    align-items: flex-end;
+    /* 棒を下揃え（グラフの底）にするのがポイント！ */
+    justify-content: space-around;
+    /* 棒と棒の間に均等な間隔をあける */
+    height: 200px;
+    /* グラフエリアの高さを200pxに設定 */
+    margin: 20px 0;
+    /* 上下に余白 */
+    border-bottom: 2px solid #ccc;
+    /* グラフの底に線を描く */
+    padding-bottom: 5px;
+    /* 底線と棒の間に少し余白 */
+}
+
+.bar-container {
+/* 棒とラベルをまとめる小さな箱に適用 */
+    display: flex;
+    flex-direction: column;
+    /* 中身を縦方向に並べる（ラベル、棒） */
+    align-items: center;
+    /* 中央揃え */
+    width: 10%;
+    /* 幅を親要素の10%にする（7日分を並べるため） */
+}
+
+.bar {
+/* 棒グラフの本体（棒）に適用 */
+    width: 100%;
+    /* 親要素（bar-container）の幅いっぱい使う */
+    background-color: #7e8fee;
+    /* 棒の色を青系に */
+    transition: height 0.5s;
+    /* 高さ（height）が変わるときに、0.5秒かけて滑らかに変化させる（アニメーション！） */
+    border-radius: 2px 2px 0 0;
+    /* 上の角だけを丸くする */
+}
+
+.day-label {
+/* 曜日のラベルに適用 */
+    font-size: 0.8rem;
+    /* 小さめの文字 */
+    margin-top: 5px;
+    /* 上に余白 */
+    color: #666;
+    /* 文字色をグレーに */
+}
+
+.time-label {
+/* 勉強時間のラベルに適用 */
+    font-size: 0.7rem;
+    /* さらに小さな文字 */
+    color: white;
+    /* 文字色を白に */
+    background: #7789eb;
+    /* 背景色を青に */
+    padding: 2px 4px;
+    /* 内側の余白 */
+    border-radius: 3px;
+    /* 角を丸く */
+    margin-bottom: 5px;
+    /* 下に余白 */
+    white-space: nowrap;
+    /* テキストが途中で改行されないようにする */
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #7789eb;
+    display: flex;
+    justify-content: center;
+
+}
+/* ============================================== */
+/* ★目標達成時の特別なデザイン */
+/* ============================================== */
+body.goal-achieved {
+/* bodyに goal-achieved クラスがついたときに適用されるデザインだよ！ */
+    background-color: #fff2ab; /* ゴールド色！かっこいい！ */
+    transition: background-color 1.0s ease-in-out; 
+    /* 背景色が変わるのを1秒かけてゆっくりアニメーションさせる魔法だよ！ */
+}
+
+/* 目標達成時は、中身の箱もちょっと豪華にしてもいいかも */
+.goal-achieved .screen {
+    border: 5px solid #ffaa00; /* ゴールデンイエローの太い枠線 */
+}
+.menuButtons img {
+    width: 30px;
+    height: auto;
+}
+/* 目標設定エリアの調整 */
+.goal-setting {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.goal-setting input {
+    width: 60px;
+    padding: 8px;
+    margin: 0 5px 10px 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#current-goal-display {
+    font-weight: bold;
+    font-size: 20px;
+    color: #3f51b5;
+    margin-top: 10px;
+}
+
+#set-goal-btn {
+    background-color: #7fca68; /* 青系にして目立たせる */
+    margin-top: 10px;
+}

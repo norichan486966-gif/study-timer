@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>アプリ</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- この下に表示したいものを書こう -->
+<head>
+    <meta charset="UTF-8">
+    <title>勉強タイマー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <button data-tab="home" onclick="showScreen('home-screen')" class="menuButtons"><img src="images/IMG_20251218_001351.png" alt=""></button>
+    <button data-tab="timer" onclick="showScreen('timer-screen')" class="menuButtons"><img src="images\IMG_20251218_000546.png" alt=""></button>
+    <button data-tab="graph" onclick="showScreen('graph-screen')" class="menuButtons"><img src="images/IMG_20251218_173628.png" alt=""></button>
+    <button data-tab="setting" onclick="showScreen('setting-screen')" class="menuButtons"><img src="images/IMG_20251218_173657.png" alt=""></button>
+  </nav>
+  <div id="home-screen" class="screen active">
+    <!-- homeに入れたいものをいれる -->
+  </div>
+  <div id="timer-screen" class="screen">
+    <h1>LET'S STUDY！📚</h1>
+    <div id="timer-container">
+        <p id="time-display">00:00:00</p>
+        <button id="start-btn"> START</button>
+        <button id="stop-btn" disabled>STOP</button>
+        <p><button id="record-btn" disabled>勉強時間を記録✅</button></p>
+        <button class="back-btn" onclick="showScreen('home-screen')">メニューへ戻る 🏠</button>
+    </div>
+  </div>
+  <div id="graph-screen" class="screen">
+    <h2>過去7日間の勉強時間 📈</h2>
+        <div id="study-graph">
+            </div>
+        <p id="graph-message" class="message"></p>
+        <button id="data-reset-btn">全データリセット 💥</button>
+
+        <button class="back-btn" onclick="showScreen('home-screen')">メニューへ戻る 🏠</button>
+  </div>
+<div id="setting-screen" class="screen">
+        
+        
+   <div class="goal-setting">
+   <p id="current-goal-display">現在の目標: 
+   <input type="number" id="goal-hour" min="0" max="24" placeholder="時間">ｈ
+   <input type="number" id="goal-minute" min="0" max="59" placeholder="分">ｍ
+   <p><button id="set-goal-btn">目標をセット</button></p>
+   </div>
+        
+  <h2>リマインダー</h2>
+  <p><input type="time" name="reminder"></p>
+  <h2>通知を許可する🔔</h2>
+</div>
+</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</html>
